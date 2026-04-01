@@ -1,6 +1,6 @@
 # hello-manifesto
 
-![hello-manifesto banner](./banner.png)
+![hello-manifesto banner](https://github.com/eggplantiny/hello-manifesto/blob/main/public/banner.png)
 
 Welcome to hello-manifesto.
 This repository is an onboarding project for beginners who want to try Manifesto MEL with a minimal Vue 3 app.
