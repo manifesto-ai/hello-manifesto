@@ -54,11 +54,6 @@ Then open the local dev URL (usually `http://localhost:5173`).
 │  └─ domain/
 │     ├─ hello.mel             # MEL domain
 │     └─ hello.domain.ts       # Manual generated typings
-├─ .github/
-│  ├─ ISSUE_TEMPLATE/
-│  │  ├─ bug_report.md
-│  │  └─ feature_request.md
-│  └─ pull_request_template.md  # PR checklist
 ├─ CONTRIBUTING.md            # Onboarding contributor guide
 ├─ START_HERE.md              # First-run onboarding instructions
 ├─ README.md
