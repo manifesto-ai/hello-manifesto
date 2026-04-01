@@ -3,7 +3,7 @@
 ![hello-manifesto banner](public/banner.png)
 
 Welcome to `hello-manifesto`.
-This repository is the **Golden Path project** for first-time [Manifesto MEL](https://github.com/manifesto-ai/manifesto) users.
+This repository is the **Golden Path project** for first-time [Manifesto](https://github.com/manifesto-ai/core) users.
 If this is your first Manifesto project, start here.
 
 ## 1) Golden path goal
