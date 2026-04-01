@@ -3,10 +3,10 @@
 ![hello-manifesto banner](public/banner.png)
 
 Welcome to `hello-manifesto`.
-This repository is the **Golden Path project** for first-time [Manifesto](https://github.com/manifesto-ai/core) users.
+This repository is the **onboarding project** for first-time [Manifesto](https://github.com/manifesto-ai/core) users.
 If this is your first Manifesto project, start here.
 
-## 1) Golden path goal
+## 1) Onboarding goal
 
 By the end of this project, you should be able to:
 
@@ -60,7 +60,7 @@ Then open the local dev URL (usually `http://localhost:5173`).
 │  │  └─ feature_request.md
 │  └─ pull_request_template.md  # PR checklist
 ├─ CONTRIBUTING.md            # Onboarding contributor guide
-├─ GOLDEN_PATH.md             # Golden path instructions
+├─ START_HERE.md              # First-run onboarding instructions
 ├─ README.md
 └─ package.json
 ```
@@ -107,7 +107,7 @@ As state changes, subscriptions update Vue refs (`counter`, `doubled`, `canDecre
 
 `increment` / `decrement` are dispatched via `dispatchAsync(createIntent(...))`.
 
-## 6) Golden path checklist
+## 6) Onboarding checklist
 
 1. Run `pnpm dev` and confirm the counter and doubled value update correctly.
 2. Change the initial `hello` text in `hello.mel` and confirm runtime snapshot updates.
@@ -124,6 +124,6 @@ As state changes, subscriptions update Vue refs (`counter`, `doubled`, `canDecre
 
 See [`CONTRIBUTING.md`](CONTRIBUTING.md) for workflow and review checklist.
 
-## 9) Golden path next step
+## 9) Next step
 
-See [`GOLDEN_PATH.md`](GOLDEN_PATH.md) for the next concrete tasks after this project.
+See [`START_HERE.md`](START_HERE.md) for the next concrete tasks after this project.
