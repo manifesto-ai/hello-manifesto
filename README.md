@@ -1,56 +1,67 @@
 # hello-manifesto
 
-![hello-manifesto banner](https://github.com/eggplantiny/hello-manifesto/blob/main/public/banner.png)
+![hello-manifesto banner](public/banner.png)
 
-Welcome to hello-manifesto.
-This repository is an onboarding project for beginners who want to try Manifesto MEL with a minimal Vue 3 app.
+Welcome to `hello-manifesto`.
+This repository is an onboarding project for beginners who want to try [Manifesto MEL](https://github.com/manifesto-ai/manifesto) with a minimal Vue 3 app.
 
-## What this project teaches
+## Why this project exists
 
-By the end of this sample, you should understand:
-
-- How to define state, computed values, and actions in MEL.
-- How to create and activate a Manifesto runtime.
-- How the UI reads runtime snapshots instead of mutating data directly.
-- How to dispatch intents (increment, decrement) from UI actions.
+- Learn the basic Manifesto flow with a tiny example.
+- Understand how MEL domain, runtime snapshot, and UI subscriptions work together.
+- Practice making small changes before moving to real-world MEL projects.
 
 ## 1) Prerequisites
 
-- Node.js installed (recent LTS recommended)
-- `pnpm` installed
+- Node.js (LTS)
+- `pnpm` (recommended)
 
-## 2) Install and run
+## 2) Get started
 
 ```bash
+# 1. clone
+git clone https://github.com/manifesto-ai/hello-manifesto.git
+cd hello-manifesto
+
+# 2. install
 pnpm install
+
+# 3. run
 pnpm dev
 ```
 
-Then open the local dev URL shown by Vite (usually `http://localhost:5173`).
+Then open the local dev URL (usually `http://localhost:5173`).
 
-### Quick checks
+### Useful scripts
 
-- Press `+` and watch `Counter` increase.
-- Confirm `Doubled` updates automatically.
-- Confirm `-` is disabled when `Counter` is `0`.
+- `pnpm dev` : run local dev server
+- `pnpm build` : type-check + production build
+- `pnpm preview` : preview build artifacts locally
 
-## 3) Core files
+## 3) Project structure
 
 ```text
 .
 ├─ src/
-│  ├─ App.vue                  # Connects Vue UI and Manifesto snapshot
-│  ├─ main.ts                  # Vue app entry point
-│  ├─ style.css                # Basic styles
+│  ├─ App.vue                  # Vue UI + Manifesto snapshot binding
+│  ├─ main.ts                  # App entry
+│  ├─ style.css                # Styles
 │  └─ domain/
-│     ├─ hello.mel             # Domain model written in MEL
-│     └─ hello.domain.ts       # Manually provided domain typing
-└─ README.md
+│     ├─ hello.mel             # MEL domain
+│     └─ hello.domain.ts       # Manual generated typings
+├─ .github/
+│  ├─ ISSUE_TEMPLATE/
+│  │  ├─ bug_report.md
+│  │  └─ feature_request.md
+│  └─ pull_request_template.md  # PR checklist
+├─ CONTRIBUTING.md            # Onboarding contributor guide
+├─ README.md
+└─ package.json
 ```
 
-## 4) How it works (step-by-step)
+## 4) How this project works
 
-### Step 1. Define the domain in MEL
+### Step 1. Define your domain in MEL
 
 `src/domain/hello.mel`:
 
@@ -80,52 +91,29 @@ domain HelloDomain {
 
 ### Step 2. Activate runtime and read the first snapshot
 
-In `App.vue`, runtime is created and activated, and the first snapshot is read for initial UI values.
-
-```ts
-const {
-  subscribe,
-  MEL,
-  dispatchAsync,
-  createIntent,
-  getSnapshot,
-  getAvailableActions,
-} = createManifesto<HelloDomain>(HelloMel, {}).activate()
-
-const snapshot = getSnapshot()
-const counter = ref(snapshot.data.counter)
-const doubled = ref(snapshot.computed.doubled)
-const canDecrement = ref(snapshot.computed.canDecrement)
-const availableActions = ref(getAvailableActions())
-```
+In `App.vue`, runtime is created and activated, and initial snapshot values are read from `getSnapshot()`.
 
 ### Step 3. Subscribe and keep UI in sync
 
-```ts
-const unsubs = [
-  subscribe(s => s.data.counter, v => counter.value = v),
-  subscribe(s => s.computed.doubled, v => doubled.value = v),
-  subscribe(s => s.computed.canDecrement, v => canDecrement.value = v),
-  subscribe(() => getAvailableActions(), v => availableActions.value = v),
-]
-```
+When state changes, subscriptions update Vue refs (`counter`, `doubled`, `canDecrement`) automatically.
 
-When the component unmounts, the unsubscribe functions are called.
+### Step 4. Dispatch actions from UI events
 
-### Step 4. Dispatch intents from UI events
+`increment` / `decrement` are dispatched via `dispatchAsync(createIntent(...))`.
 
-```ts
-dispatchAsync(createIntent(MEL.actions.increment))
-dispatchAsync(createIntent(MEL.actions.decrement))
-```
+## 5) Onboarding checklist (do these first)
 
-## 5) Recommended first onboarding exercises
+1. Run `pnpm dev` and verify counter increment/decrement works.
+2. Change `hello` initial text in `hello.mel`.
+3. Add one computed value (for example `isEven = mod(counter, 2) == 0`).
+4. Add an action that adds 2 at once.
+5. Open a PR using the template and describe what changed.
 
-1. Change initial value in `hello.mel` and observe how snapshot updates.
-2. Add a new computed value (ex. `isEven`).
-3. Add a new action that increments by 2.
-4. Add one safety guard using `available when`.
+## 6) Troubleshooting
 
-## 6) Notes
+- If `pnpm install` fails, confirm Node.js and pnpm versions.
+- If UI does not update after dispatch, recheck subscriptions in `App.vue`.
 
-- This is intentionally small and educational.
+## 7) Contributing
+
+See [`CONTRIBUTING.md`](CONTRIBUTING.md) for local workflow and PR checklist.
