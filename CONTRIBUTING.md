@@ -1,6 +1,7 @@
 # Contributing Guide
 
 Thank you for contributing to `hello-manifesto`.
+This repository is the Golden Path project for first-time Manifesto users.
 
 ## 1) Local workflow
 
@@ -14,6 +15,7 @@ When you change `src/domain/hello.mel`:
 - Keep changes focused and small.
 - Verify behavior quickly in the browser.
 - Update docs when user-visible behavior changes.
+- Follow the Golden Path order in [`GOLDEN_PATH.md`](GOLDEN_PATH.md) for new experiments.
 
 ## 2) Commit guidance
 
@@ -30,7 +32,7 @@ Example commit messages:
 - [ ] Feature/bug behavior verified in `pnpm dev`
 - [ ] No unrelated file churn
 - [ ] `README.md` updated for user-visible changes
-- [ ] Relevant docs updated (`CONTRIBUTING.md`, etc.)
+- [ ] Relevant docs updated (`CONTRIBUTING.md`, `GOLDEN_PATH.md`, etc.)
 - [ ] Link to related issue (if any)
 
 ## 4) Project boundaries

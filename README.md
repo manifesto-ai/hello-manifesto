@@ -3,20 +3,25 @@
 ![hello-manifesto banner](public/banner.png)
 
 Welcome to `hello-manifesto`.
-This repository is an onboarding project for beginners who want to try [Manifesto MEL](https://github.com/manifesto-ai/manifesto) with a minimal Vue 3 app.
+This repository is the **Golden Path project** for first-time [Manifesto MEL](https://github.com/manifesto-ai/manifesto) users.
+If this is your first Manifesto project, start here.
 
-## Why this project exists
+## 1) Golden path goal
 
-- Learn the basic Manifesto flow with a tiny example.
-- Understand how MEL domain, runtime snapshot, and UI subscriptions work together.
-- Practice making small changes before moving to real-world MEL projects.
+By the end of this project, you should be able to:
 
-## 1) Prerequisites
+- define a simple MEL domain
+- activate a Manifesto runtime
+- bind runtime snapshots to Vue UI
+- dispatch intents from UI events
+- make one confident feature update and verify it
+
+## 2) Prerequisites
 
 - Node.js (LTS)
 - `pnpm` (recommended)
 
-## 2) Get started
+## 3) Get started
 
 ```bash
 # 1. clone
@@ -38,7 +43,7 @@ Then open the local dev URL (usually `http://localhost:5173`).
 - `pnpm build` : type-check + production build
 - `pnpm preview` : preview build artifacts locally
 
-## 3) Project structure
+## 4) Project structure
 
 ```text
 .
@@ -55,11 +60,12 @@ Then open the local dev URL (usually `http://localhost:5173`).
 │  │  └─ feature_request.md
 │  └─ pull_request_template.md  # PR checklist
 ├─ CONTRIBUTING.md            # Onboarding contributor guide
+├─ GOLDEN_PATH.md             # Golden path instructions
 ├─ README.md
 └─ package.json
 ```
 
-## 4) How this project works
+## 5) How this project works
 
 ### Step 1. Define your domain in MEL
 
@@ -89,31 +95,35 @@ domain HelloDomain {
 }
 ```
 
-### Step 2. Activate runtime and read the first snapshot
+### Step 2. Activate runtime and read first snapshot
 
-In `App.vue`, runtime is created and activated, and initial snapshot values are read from `getSnapshot()`.
+In `App.vue`, runtime is created and activated, and the initial snapshot is read from `getSnapshot()`.
 
 ### Step 3. Subscribe and keep UI in sync
 
-When state changes, subscriptions update Vue refs (`counter`, `doubled`, `canDecrement`) automatically.
+As state changes, subscriptions update Vue refs (`counter`, `doubled`, `canDecrement`).
 
-### Step 4. Dispatch actions from UI events
+### Step 4. Dispatch intents from UI events
 
 `increment` / `decrement` are dispatched via `dispatchAsync(createIntent(...))`.
 
-## 5) Onboarding checklist (do these first)
+## 6) Golden path checklist
 
-1. Run `pnpm dev` and verify counter increment/decrement works.
-2. Change `hello` initial text in `hello.mel`.
+1. Run `pnpm dev` and confirm the counter and doubled value update correctly.
+2. Change the initial `hello` text in `hello.mel` and confirm runtime snapshot updates.
 3. Add one computed value (for example `isEven = mod(counter, 2) == 0`).
-4. Add an action that adds 2 at once.
-5. Open a PR using the template and describe what changed.
+4. Add one action that increments by 2.
+5. Submit your change using the PR template.
 
-## 6) Troubleshooting
+## 7) Troubleshooting
 
 - If `pnpm install` fails, confirm Node.js and pnpm versions.
-- If UI does not update after dispatch, recheck subscriptions in `App.vue`.
+- If UI does not update after dispatch, check subscriptions in `App.vue`.
 
-## 7) Contributing
+## 8) Contributing
 
-See [`CONTRIBUTING.md`](CONTRIBUTING.md) for local workflow and PR checklist.
+See [`CONTRIBUTING.md`](CONTRIBUTING.md) for workflow and review checklist.
+
+## 9) Golden path next step
+
+See [`GOLDEN_PATH.md`](GOLDEN_PATH.md) for the next concrete tasks after this project.
